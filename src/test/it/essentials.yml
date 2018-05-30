@@ -1,0 +1,37 @@
+---
+packaging:
+  bom: bom.yml
+  environment: aws
+  archiveArtifacts: true
+  cwpVersion: 0.1-alpha-6
+  config:
+    bundle:
+      vendor: "Jenkins project"
+      title: "Jenkins WAR - Artifact Manager S3 Integration Tests"
+      description: "Demo build, which includes Artifact Manager S3 and plugins using ArtifactManager API for testing"
+    groovyHooks:
+      - type: "init"
+        id: "initScripts"
+        source:
+          dir: initScripts
+ath:
+  # TODO: ATH test dependency issues
+  disabled: true
+  useLocalSnapshots: false
+  tests:
+    - "core.ArtifactsTest"
+    - "plugins.CopyArtifactPluginTest"
+    - "plugins.CompressArtifactsPluginTest"
+    - "plugins.WorkflowPluginTest"
+    - "plugins.WorkflowMultibranchTest"
+  categories:
+    - "org.jenkinsci.test.acceptance.junit.SmokeTest"
+pct:
+  useLocalSnapshots: false
+  jth:
+    version: 2.38
+    passCustomJenkinsWAR: true
+  plugins:
+    - "copyartifact"
+    - "workflow-job"
+    - "workflow-basic-steps"
